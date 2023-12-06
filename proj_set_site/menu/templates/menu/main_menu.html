@@ -1,0 +1,8 @@
+<h1> Play Projective Set! </h1>
+<ul>
+    <form action="{% url 'menu:start_game' %}" method="post">
+    {% csrf_token %}
+        <li> <button type="submit"> Start Game </button></li>
+    </form>
+    <li> <button type="button"> Settings </button></li>
+</ul>
