@@ -11,68 +11,71 @@
         i = 4: purple circle in bottom left
         i = 5: orange circle in bottom right -->
 
+<!-- This javascript part absolutely does not work right now -->
 <script>
-    // Assuming PlayCard is a JavaScript object with a "points" property
-    var cardElement = document.querySelector('.card-display');
-    var PlayCard = JSON.parse(cardElement.dataset.card);
+    function displayCard() {
+        // Assuming PlayCard is a JavaScript object with a "points" property
+        var cardElement = document.querySelector('.card-display');
+        var PlayCard = JSON.parse(cardElement.dataset.card);
 
-    var cardPoints = PlayCard.points;
+        var cardPoints = '{{card.points.points}}';
+        console.log(cardPoints); // Print cardPoints to the console
 
-    // Get the circle elements
-    var redCircle = document.querySelector('.circle.red');
-    var blueCircle = document.querySelector('.circle.blue');
-    var greenCircle = document.querySelector('.circle.green');
-    var yellowCircle = document.querySelector('.circle.yellow');
-    var purpleCircle = document.querySelector('.circle.purple');
-    var orangeCircle = document.querySelector('.circle.orange');
+        // Get the circle elements
+        var redCircle = document.querySelector('.circle.red');
+        var blueCircle = document.querySelector('.circle.blue');
+        var greenCircle = document.querySelector('.circle.green');
+        var yellowCircle = document.querySelector('.circle.yellow');
+        var purpleCircle = document.querySelector('.circle.purple');
+        var orangeCircle = document.querySelector('.circle.orange');
 
-    // Hide or show the circles based on the card points
-    if (cardPoints.charAt(0) === '1') {
-        redCircle.style.display = 'block';
-    } else {
-        redCircle.style.display = 'none';
+        // Hide all circles by default
+        redCircle.classList.remove('visible');
+        blueCircle.classList.remove('visible');
+        greenCircle.classList.remove('visible');
+        yellowCircle.classList.remove('visible');
+        purpleCircle.classList.remove('visible');
+        orangeCircle.classList.remove('visible');
+
+        // Show the circles based on the card points
+        if (cardPoints.charAt(0) === '1') {
+            redCircle.classList.add('visible');
+        }
+
+        if (cardPoints.charAt(1) === '1') {
+            blueCircle.classList.add('visible');
+        }
+
+        if (cardPoints.charAt(2) === '1') {
+            greenCircle.classList.add('visible');
+        }
+
+        if (cardPoints.charAt(3) === '1') {
+            yellowCircle.classList.add('visible');
+        }
+
+        if (cardPoints.charAt(4) === '1') {
+            purpleCircle.classList.add('visible');
+        }
+
+        if (cardPoints.charAt(5) === '1') {
+            orangeCircle.classList.add('visible');
+        }
     }
-
-    if (cardPoints.charAt(1) === '1') {
-        blueCircle.style.display = 'block';
-    } else {
-        blueCircle.style.display = 'none';
-    }
-
-    if (cardPoints.charAt(2) === '1') {
-        greenCircle.style.display = 'block';
-    } else {
-        greenCircle.style.display = 'none';
-    }
-
-    if (cardPoints.charAt(3) === '1') {
-        yellowCircle.style.display = 'block';
-    } else {
-        yellowCircle.style.display = 'none';
-    }
-
-    if (cardPoints.charAt(4) === '1') {
-        purpleCircle.style.display = 'block';
-    } else {
-        purpleCircle.style.display = 'none';
-    }
-
-    if (cardPoints.charAt(5) === '1') {
-        orangeCircle.style.display = 'block';
-    } else {
-        orangeCircle.style.display = 'none';
-    }
+    window.onload = displayCard;
 </script>
 
-<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-    <div class="card-display">
-        <div class="circle red"></div>
-        <div class="circle blue"></div>
-        <div class="circle green"></div>
-        <div class="circle yellow"></div>
-        <div class="circle purple"></div>
-        <div class="circle orange"></div>
-    </div>
+{{card.id}} <!-- For debugging right now!-->
+<div style="display: flex; justify-content: center; align-items: center; ">
+    <form action="{% url 'game_board:card_selected' card.id %}" method="post">
+        {% csrf_token %}
+        <button data-card-id="{{ card.id }}" class="card-display" type="submit" {%if card.selected %} style="box-shadow: 0 0 5px rgba(255, 0, 0, 0.3);" {% endif %}>
+            <div class="circle red"></div>
+            <div class="circle blue"></div>
+            <div class="circle green"></div>
+            <div class="circle yellow"></div>
+            <div class="circle purple"></div>
+            <div class="circle orange"></div>
+        </button>
+    <form action="{% url 'menu:start_game' %}" method="post">
 </div>
-Helllllo!
-<!-- END: ed8c6549bwf9 -->

@@ -20,8 +20,7 @@ def create_game(request):
         while n > 0:
             point_str += str(n % 2)
             n //= 2
-        point_str = '{:<6}'.format(point_str)
-        
+        point_str = point_str.ljust(6, '0')  # Add trailing zeros
         card = Card(points = point_str, loc = 'deck', selected = False)
         card.save()
     
@@ -54,4 +53,11 @@ def _fill_empty_pos():
         card_on_top.loc = 'play'
         pos.save()
         card_on_top.save()
+
+def card_selected(request, card_id):
+    card = Card.objects.get(id=card_id)
+    card.selected = not card.selected
+    card.save()
+    return HttpResponseRedirect(reverse("game_board:board"))
+
 

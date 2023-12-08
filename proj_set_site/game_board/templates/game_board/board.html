@@ -2,49 +2,15 @@
 <html>
 {% load static %}
 <link rel="stylesheet" href="{% static 'game_board/style.css' %}">
-<head>
-    <title>Black-outlined Rectangle</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        
-        .grid {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .row {
-            display: flex;
-        }
-        
-        .rectangle {
-            margin: auto;
-            width: 200px;
-            height: 200px;
-            border: 1px solid black;
-        }   
-    </style>
-</head>
-<body>
-    <div class="grid">
-        <div class="row">
-            <div class="rectangle"></div>
-            <div class="rectangle"></div>
-            <div class="rectangle"></div>
-            <div class="rectangle"></div>
-            <div class="rectangle"></div>
+
+
+<div class="grid-container" style="display: grid; grid-template-columns: auto auto auto auto; justify-content: center; align-items: center; margin: 30px;">
+    {% for playPos in play_positions %}
+        <div class="grid-item">
+            {% include "game_board/card_display.html" with card=playPos.card %}
+            {{playPos.card.id}} <!-- For debugging right now!-->
         </div>
-        <div class="row">
-            <div class="rectangle"></div>
-            <div class="rectangle"></div>
-            <div class="rectangle"></div>
-            <div class="rectangle"></div>
-            <div class="rectangle"></div>
-        </div>
-    </div>
-</body>
-</html>
+    {% endfor %}
+</div>
+
+hi!
