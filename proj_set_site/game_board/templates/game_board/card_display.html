@@ -1,0 +1,78 @@
+<!-- 
+    This template is used to display a card in the game board.
+    It is used by the game_board.html template.
+
+    Given a card Object, create a card display where the Card.points field indicates in binary which of 6 fixed colored circles is present
+    if the ith character in Card.points is 1:
+        i = 0: red circle in top left
+        i = 1: blue circle in top right
+        i = 2: green circle in middle left
+        i = 3: yellow circle in middle right
+        i = 4: purple circle in bottom left
+        i = 5: orange circle in bottom right -->
+
+<script>
+    // Assuming PlayCard is a JavaScript object with a "points" property
+    var cardElement = document.querySelector('.card-display');
+    var PlayCard = JSON.parse(cardElement.dataset.card);
+
+    var cardPoints = PlayCard.points;
+
+    // Get the circle elements
+    var redCircle = document.querySelector('.circle.red');
+    var blueCircle = document.querySelector('.circle.blue');
+    var greenCircle = document.querySelector('.circle.green');
+    var yellowCircle = document.querySelector('.circle.yellow');
+    var purpleCircle = document.querySelector('.circle.purple');
+    var orangeCircle = document.querySelector('.circle.orange');
+
+    // Hide or show the circles based on the card points
+    if (cardPoints.charAt(0) === '1') {
+        redCircle.style.display = 'block';
+    } else {
+        redCircle.style.display = 'none';
+    }
+
+    if (cardPoints.charAt(1) === '1') {
+        blueCircle.style.display = 'block';
+    } else {
+        blueCircle.style.display = 'none';
+    }
+
+    if (cardPoints.charAt(2) === '1') {
+        greenCircle.style.display = 'block';
+    } else {
+        greenCircle.style.display = 'none';
+    }
+
+    if (cardPoints.charAt(3) === '1') {
+        yellowCircle.style.display = 'block';
+    } else {
+        yellowCircle.style.display = 'none';
+    }
+
+    if (cardPoints.charAt(4) === '1') {
+        purpleCircle.style.display = 'block';
+    } else {
+        purpleCircle.style.display = 'none';
+    }
+
+    if (cardPoints.charAt(5) === '1') {
+        orangeCircle.style.display = 'block';
+    } else {
+        orangeCircle.style.display = 'none';
+    }
+</script>
+
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <div class="card-display">
+        <div class="circle red"></div>
+        <div class="circle blue"></div>
+        <div class="circle green"></div>
+        <div class="circle yellow"></div>
+        <div class="circle purple"></div>
+        <div class="circle orange"></div>
+    </div>
+</div>
+Helllllo!
+<!-- END: ed8c6549bwf9 -->

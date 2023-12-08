@@ -1,1 +1,50 @@
-Hello!
+<!DOCTYPE html>
+<html>
+{% load static %}
+<link rel="stylesheet" href="{% static 'game_board/style.css' %}">
+<head>
+    <title>Black-outlined Rectangle</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .grid {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .row {
+            display: flex;
+        }
+        
+        .rectangle {
+            margin: auto;
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+        }   
+    </style>
+</head>
+<body>
+    <div class="grid">
+        <div class="row">
+            <div class="rectangle"></div>
+            <div class="rectangle"></div>
+            <div class="rectangle"></div>
+            <div class="rectangle"></div>
+            <div class="rectangle"></div>
+        </div>
+        <div class="row">
+            <div class="rectangle"></div>
+            <div class="rectangle"></div>
+            <div class="rectangle"></div>
+            <div class="rectangle"></div>
+            <div class="rectangle"></div>
+        </div>
+    </div>
+</body>
+</html>
