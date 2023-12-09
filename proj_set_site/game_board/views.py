@@ -60,4 +60,6 @@ def card_selected(request, card_id):
     card.save()
     return HttpResponseRedirect(reverse("game_board:board"))
 
-
+class cardFactory:
+    def render(request, context):
+        return render(request, 'game_board/card_display.html', context)

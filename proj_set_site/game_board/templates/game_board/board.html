@@ -2,15 +2,63 @@
 <html>
 {% load static %}
 <link rel="stylesheet" href="{% static 'game_board/style.css' %}">
+<script>
+    function displayCard(cardElement) {
 
+        //var cardElement = document.querySelector('button[card_id_data="{{card_id}}"]');
+        var cardPoints =  cardElement.dataset.cardPoints;
+        // Get the circle elements
+        var redCircle = cardElement.querySelector('.circle.red');   
+        var blueCircle = cardElement.querySelector('.circle.blue');
+        var greenCircle = cardElement.querySelector('.circle.green');
+        var yellowCircle = cardElement.querySelector('.circle.yellow');
+        var purpleCircle = cardElement.querySelector('.circle.purple');
+        var orangeCircle = cardElement.querySelector('.circle.orange');
+
+        // Hide all circles by default
+        redCircle.classList.remove('visible');
+        blueCircle.classList.remove('visible');
+        greenCircle.classList.remove('visible');
+        yellowCircle.classList.remove('visible');
+        purpleCircle.classList.remove('visible');
+        orangeCircle.classList.remove('visible');
+
+        // Show the circles based on the card points
+        if (cardPoints.charAt(0) === '1') {
+            redCircle.classList.add('visible');
+        }
+
+        if (cardPoints.charAt(1) === '1') {
+            blueCircle.classList.add('visible');
+        }
+
+        if (cardPoints.charAt(2) === '1') {
+            greenCircle.classList.add('visible');
+        }
+
+        if (cardPoints.charAt(3) === '1') {
+            yellowCircle.classList.add('visible');
+        }
+
+        if (cardPoints.charAt(4) === '1') {
+            purpleCircle.classList.add('visible');
+        }
+
+        if (cardPoints.charAt(5) === '1') {
+            orangeCircle.classList.add('visible');
+        }
+    }
+    //want to load cardElement and point_str emidiatly so that it applies to the current card.
+    document.addEventListener("DOMContentLoaded", function() {
+        var cardElements = document.querySelectorAll('button');
+        cardElements.forEach(displayCard);
+    });
+</script>
 
 <div class="grid-container" style="display: grid; grid-template-columns: auto auto auto auto; justify-content: center; align-items: center; margin: 30px;">
     {% for playPos in play_positions %}
         <div class="grid-item">
-            {% include "game_board/card_display.html" with card=playPos.card %}
-            {{playPos.card.id}} <!-- For debugging right now!-->
+            {% include "game_board/card_display.html" with card=playPos.card%}
         </div>
     {% endfor %}
 </div>
-
-hi!
